@@ -1,0 +1,131 @@
+@ARTICLE{openmeets,
+  author={Rothenberg, C.E. and Chua, R. and Bailey, J. and Winter, M. and Correa, C.N.A. and de Lucena, S.C. and Salvador, M.R. and Nadeau, T.D.},
+  journal={Computer},
+  title={When Open Source Meets Network Control Planes},
+  year={2014},
+  volume={47},
+  number={11},
+  pages={46-54},
+  keywords={computer networks;public domain software;agility improvement;innovation;network control planes;open source components;operational costs;software-defined networking;Computer architecture;Ecosystems;Open source software;Open systems;Software defined networking;Standards development;Border Gateway Protocol;OpenFlow architecture;Software-defined networking;network architecture;open source networking},
+  doi={10.1109/MC.2014.340},
+  ISSN={0018-9162},
+  month={Nov}
+}
+@techreport{white_sdn,
+    abstract = {{Traditional network architectures are ill-suited to meet the requirements of today's enterprises, carriers, and end users. Thanks to a broad industry effort spearheaded by the Open Networking Foundation (ONF), Software- Defined Networking (SDN) is transforming networking architecture. In the SDN architecture, the control and data planes are decoupled, network intelligence and state are logically centralized, and the underlying network infrastructure is abstracted from the applications. As a result, enterprises and carriers gain unprecedented programmability, automation, and network control, enabling them to build highly scalable, flexible networks that readily adapt to changing business needs. The ONF is a non-profit industry consortium that is leading the advancement of SDN and standardizing critical elements of the SDN architecture such as the OpenFlow protocol, which structures communication between the control and data planes of supported network devices. OpenFlow is the first standard interface designed specifically for SDN, providing high-performance, granular traffic control across multiple vendors' network devices. OpenFlow-based SDN is currently being rolled out in a variety of networking devices and software, delivering substantial benefits to both enterprises and carriers, including: Centralized management and control of networking devices from multiple vendors; Improved automation and management by using common APIs to abstract the underlying networking details from the orchestration and provisioning systems and applications; Rapid innovation through the ability to deliver new network capabilities and services without the need to configure individual devices or wait for vendor releases; Programmability by operators, enterprises, independent software vendors, and users (not just equipment manufacturers) using common programming environments, which gives all parties new opportunities to drive revenue and differentiation; Increased network reliability and security as a result of centralized and automated management of network devices, uniform policy enforcement, and fewer configuration errors; More granular network control with the ability to apply comprehensive and wide-ranging policies at the session, user, device, and application levels; and Better end-user experience as applications exploit centralized network state information to seamlessly adapt network behavior to user needs. SDN is a dynamic and flexible network architecture that protects existing investments while future-proofing the network. With SDN, today's static network can evolve into an extensible service delivery platform capable of responding rapidly to changing business, end-user, and market needs.}},
+    address = {Palo Alto, CA, USA},
+    author = {{Open Networking Foundation}},
+    day = {13},
+    institution = {Open Networking Foundation},
+    key = {Open Networking Foundation},
+    keywords = {openflow, sdn, softwaredefinednetwork},
+    month = apr,
+    posted-at = {2013-07-12 05:55:33},
+    priority = {2},
+    title = {{Software-Defined Networking: The New Norm for Networks}},
+    type = {White paper},
+    url = {http://www.opennetworking.org/images/stories/downloads/sdn-resources/white-papers/wp-sdn-newnorm.pdf},
+    year = {2012}
+}
+@techreport{openflow_spec,
+    address = {Palo Alto, CA, USA},
+    author = {{Open Networking Foundation}},
+    day = {25},
+    institution = {Open Networking Foundation},
+    key = {Open Networking Foundation},
+    keywords = {openflow, sdn, switch},
+    month = jun,
+    title = {{OpenFlow Switch Specification}},
+    note = {Version 1.3.0 (Wire Protocol 0x04)},
+    type = {White paper},
+    url = {https://www.opennetworking.org/images/stories/downloads/sdn-resources/onf-specifications/openflow/openflow-spec-v1.3.0.pdf},
+    year = {2012}
+}
+@book{jose_book,
+   author = "Jose L. Muñoz",
+   title = "Virtualization and SDN",
+   year = 2016
+}
+@misc{wikirf,
+  author = "Allan Vidal",
+  title = "RouteFLow Wiki --- Github",
+  year = "2013",
+  howpublished = "\url{https://github.com/routeflow/RouteFlow/wiki}",
+  note = "[Internet; descargado 6-febrero-2016]"
+}
+@article{routemod,
+  title={RouteMod: A Flexible Approach to Route Propagation},
+  author={Stringer, Jonathan and Owen, Cameron},
+  year={2013}
+}
+@phdthesis{cardigan,
+  title={Cardigan: Development of a distributer router},
+  author={Lorier, Christopher},
+  year={2013},
+  school={The University of Waikato}
+}
+@book{feihu,
+  title={Network Innovation through OpenFlow and SDN: Principles and Design},
+  author={Hu, Fei},
+  year={2014},
+  publisher={CRC Press}
+}
+@book{mongodb,
+  title={The definitive guide to MongoDB: the noSQL database for cloud and desktop computing},
+  author={Membrey, Peter and Plugge, Eelco and Hawkins, DUPTim},
+  year={2011},
+  publisher={Apress}
+}
+@inproceedings{resilience,
+  title={On the resilience of software defined routing platform},
+  author={Zeng, Pengcheng and Nguyen, Kien and Shen, Yao and Yamada, Shigeru},
+  booktitle={Network Operations and Management Symposium (APNOMS), 2014 16th Asia-Pacific},
+  pages={1--4},
+  year={2014},
+  organization={IEEE}
+}
+@inproceedings{muscles,
+  title={Revisiting routing control platforms with the eyes and muscles of software-defined networking},
+  author={Rothenberg, Christian Esteve and Nascimento, Marcelo Ribeiro and Salvador, Marcos Rogerio and Corr{\^e}a, Carlos Nilton Araujo and Cunha de Lucena, Sidney and Raszuk, Robert},
+  booktitle={Proceedings of the first workshop on Hot topics in software defined networks},
+  pages={13--18},
+  year={2012},
+  organization={ACM}
+}
+@article{sdn_isp,
+  title={Towards carrier grade SDNs},
+  author={Rizvi, Syed Naveed and Raumer, Daniel and Wohlfart, Florian and Carle, Georg},
+  journal={Computer Networks},
+  volume={92},
+  pages={218--226},
+  year={2015},
+  publisher={Elsevier}
+}
+@inproceedings{passervice,
+ author = {Keller, Eric and Rexford, Jennifer},
+ title = {The "Platform As a Service" Model for Networking},
+ booktitle = {Proceedings of the 2010 Internet Network Management Conference on Research on Enterprise Networking},
+ series = {INM/WREN'10},
+ year = {2010},
+ location = {San Jose, CA},
+ pages = {4--4},
+ numpages = {1},
+ url = {http://dl.acm.org/citation.cfm?id=1863133.1863137},
+ acmid = {1863137},
+ publisher = {USENIX Association},
+ address = {Berkeley, CA, USA},
+} 
+@article{rasservice,
+  title={Routing as a Service},
+  author={Shenker, Karthik Lakshminarayanan Ion Stoica Scott and Rexford, Jennifer}
+}
+@inproceedings{scalable,
+  title={Scalable OpenFlow controller redundancy tackling local and global recoveries},
+  author={Kuroki, Keisuke and Matsumoto, Nobutaka and Hayashi, Michiaki},
+  booktitle={The Fifth International Conference on Advances in Future Internet},
+  pages={61--66},
+  year={2013},
+  organization={Citeseer}
+}
+
+

@@ -1,0 +1,458 @@
+
+
+\section{Project Introduction \& Objectives}
+\subsection{Introduction}
+
+\begin{frame}[fragile]\frametitle{Motivation}
+\begin{itemize}
+\item The application that is going to be developed is web-oriented and focused on real time
+communications. 
+\item This kind of technology has been developed by Google in order to use on its browsers, thing that make easier
+the fact no plugins and extensions are required to install in order to use it.
+\item To start,  we will have to treat many aspects: % After researching we realize that we had to learn....
+% En la lista solo se nombran, se tendrán que explicar en la presentación.
+  \begin{enumerate}
+  \item WebRTC API's and technologies.
+  \item HTML language.
+  \item JavaScript language.
+  \item Callback concept.
+  \item Server made with Node.js technology.
+  \item Signaling process.
+  \item Latex.
+  \end{enumerate}
+\end{itemize}
+\end{frame}
+
+
+\clearpage
+\begin{frame}[fragile]\frametitle{Motivation}
+\begin{itemize}
+
+\item Other related knowledges are needed, those that have been acquired during this years
+at the university, thing that will make easier all the absorption of concepts above:
+
+% En la lista solo se nombran, se tendrán que explicar en la presentación.
+  \begin{enumerate}
+  \item Object Oriented Programming.
+  \item Multimedia coding.
+  \item Audio/video concepts.
+  \item Telematic concepts.
+  \item Unix/Linux environment.
+  \end{enumerate}
+
+% Aqui se explicaria todo el proceso inicial de busqueda de informacion, como y donde la hemos buscado
+\item The main goal of this project is help us to get us started with WebRTC by researching and
+understanding this technology and finally trying to develop a simple WebRTC site from scratch.
+
+\end{itemize}
+\end{frame}
+\clearpage
+
+\subsection{Objectives}
+\begin{frame}[fragile]\frametitle{Objectives}
+\begin{itemize}
+
+\item The main Goal: Develop a web application through an expanding technology as WebRTC to:
+  \begin{enumerate}
+  \item Establish multimedia communication between peers.
+  \item Room treatment.
+  \item Text chat communication.
+  \item File sharing.
+  \end{enumerate}
+  
+\item After all, our project will have the following objectives which have been defined taking into account
+the introduction themes to treat, so it was decided that the application had at least:
+
+%Aqui se tendrian que explicar un poco que haria cada especificacion a crear. En la lista solo se nombran, pero se tendran que explicar.
+  \begin{enumerate}
+  \item A Node.js Server.
+  \item Web-page made with html and JavaScript code.
+  \item Handle streams.
+  \item HTTPS secure connection. %Introducir/Explicar el porque del cambio de http a https.
+  \item File Sharing.
+  \end{enumerate}
+\end{itemize}
+\end{frame}
+
+\section{WebRTC overview}
+\subsection{A few of history...}
+\begin{frame}[fragile]\frametitle{History}
+\begin{itemize}
+
+\item The web evolution...
+  \begin{enumerate}
+  \item 1990:Navigation by HREF-based hyperlinks.
+  \item 2000: XMLHttpRequest (XHR), no need to update their content. Allow server-based web services like Facebook, Gmail, etc..
+  \item Nowadays: NO servers required to transmit data between peers.
+  \end{enumerate}
+\end{itemize}
+\end{frame}
+\clearpage
+
+
+\begin{frame}[fragile]\frametitle{Overview}
+\begin{itemize}
+
+\item Direct peer to peer communications should provide:
+\begin{enumerate}
+ \item Lower latency.
+ \item Multiplayer gaming.
+ \item Video/audio streaming.
+ \item Sensor data feeds.
+ \item Secure P2P connections. % Permiten itenrcambio info privada, sin necesidad de servidores, 
+ 
+\end{enumerate}
+\item So it allows the fact of exchanging information privately without being managed by intermediary servers. 
+It introduces a way to create new types of services and aplications.
+
+\item This is just a brief overview of how WebRTC can be used.
+\end{itemize}
+\end{frame}
+\clearpage
+
+\subsection{Pros and cons}
+\begin{frame}[fragile]\frametitle{Trade Off}
+\begin{itemize}
+\item Advantages:
+  \begin{enumerate}
+  \item No plugins required. %just update your browser.
+  \item Only a handshaking process (Signaling). % between the server and the participants
+  \item No server required to exchanging data.
+  \item File sharing or text chat (Data channel).
+  \item Better encryption.% The traffic is encrypted between peers, so it means that
+  %if you are being attacked by a MiD (man in the middle) it’s really harder to
+  %break it down.
+  \end{enumerate}
+
+\item Drawbacks:
+  \begin{enumerate}
+  \item Vulnerable on the signaling process.% One must be careful to not to use passwords or shared secrets at the signaling process because at this step data is not encrypted.
+  \item Not supported for all browsers. %IE & Safari are not supported.
+  \item Mobiles are not supported yet. %No native mobile support.
+  \item Hard to scalling. %Large video calls are not well scaled. It means that if
+  %you want to do a multi chat connection, each user has to have a peer to peer
+  %connection with all the other users. Right figures are 4 to 8 users.
+  \end{enumerate}
+\end{itemize}
+\end{frame}
+\clearpage
+
+\begin{frame}[fragile]\frametitle{Browser support}
+
+\includegraphics[width=0.8\textwidth]{\webrtcdir/figures/figuras_utilizadas/webrtc_browsers_state1.png}
+
+\end{frame}
+
+\section{Signaling}
+\begin{frame}[fragile]\frametitle{Signaling Overview}
+\begin{itemize}
+ 
+\item Analogy:
+
+This is an analog process like the early days of telephone. When you wanted to call somebody, the signal is picked up by telephone operator, 
+which used to patch the signal with the final user. It was like a \textbf{Manual Handshake} between two parties.
+
+\item Signaling is an extremely important part of webRTC. In order for a WebRTC application to set up a 'call', its clients need to exchange information:
+  \begin{enumerate}
+  \item Session control messages used to open or close communication.
+  \item Error messages.
+  \item Media meta data such as codecs and codec settings, bandwidth and media types.
+  \item Key data, used to establish secure connections.
+  \item Network data, such as a host's IP address and port as seen by the outside world.
+  \end{enumerate}
+\end{itemize}
+\end{frame}
+\clearpage
+
+\begin{frame}[fragile,allowframebreaks]\frametitle{Signalling}
+ 
+\begin{columns}
+\begin{column}{0.48\textwidth}
+
+\begin{itemize}
+\item Signaling methods and protocols are not defined on the WebRTC standards
+in order to maximize compatibility with established technologies. 
+\item The JavaScript Session Establishment Protocol (JSEP) defines an approach 
+for the fully application but excludes the signaling methods to use.
+\end{itemize}
+\end {column}
+\begin{column}{0.48\textwidth}
+\includegraphics[width=1\columnwidth]{\webrtcdir/figures/figuras_ok/JSEP.pdf}
+\end{column}
+\end {columns}
+
+
+\begin{itemize}
+
+\item The offer/Answer contains the Session Description Protocol (SDP) that features all the characteristics to the data (video \& audio) to be exchanged:
+  \begin{enumerate}
+  \item Media (Audio \& Video) Codecs.
+  \item Resolution format.
+  \item Transport protocol used.
+  \item Endpoint IP address and port.
+  \item Other info to describe a media transfer endpoint.
+  \end{enumerate}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{SDP}
+\begin{itemize}
+\item SDP Components:
+  \begin{enumerate}
+  \item Session Description
+  \item Time Description
+  \item Media Description
+  \end{enumerate}
+\item An SDP session description consists of a number of lines of text of the form:
+\texttt{<type>=<value>}.
+
+\item  where:
+  \begin{enumerate}
+  \item Type  must be exactly one case-significant character 
+  \item Value is structured text whose format depends on <type>.  
+  In general, <value> is either a number of fields delimited by a single space character or a free format string.  
+  \item No white spaces allowed on both sides of "=" sign.
+  \item Optional items are marked with a "*".
+  \end{enumerate}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Example}
+\begin{itemize}
+\item SDP example:
+%TODO: Poner el ejemplo del SDP
+
+  
+
+\end{itemize}
+\end{frame}
+
+% TODO: He intentado poner el SDP example pero queda muuuy grande y feo.
+
+
+\begin{frame}[fragile]\frametitle{Example}
+\begin{itemize}
+%TODO: Aqui tendriamos que poner que setRemote/LocalDescription y la offer viene generada por RTCPeerConnection que se explicará en las APIS de WebRTC, pero 
+% que entra en el proceso de signaling.
+\item The initial signaling steps:
+  \begin{enumerate}
+  \item Alice wants to reach Bob's browser, so an Offer is created and sent to the Server.
+  \item Alice adds its offer to setLocalDescription(). %Importante comentar que se explicara mas abajo el setLocalDescription() y SDP.
+  \item Bob reach the server and receive the offer generated by Alice.
+  \item Bob adds to its setRemoteDescription() the received offer and create an answer to the server.
+  \item Bob adds its answer to its setLocalDescription().
+  \item Alice receive the answer from Bob and adds it to its setRemoteDescription().
+   \end{enumerate}
+%Comentar que este proceso (el de arriba) se hace al iniciar una llamada o si se esta reconfigurando la misma.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Initial Scenario}
+\includegraphics[width=0.7\textwidth]{\webrtcdir/figures/figuras_ok/4_signalling_offer_answer.pdf}
+
+%TODO: Igual se tendria que modificar la figura añadiendo el setLocalDescription ya que dentro de la offer/answer va el sdp.
+\end{frame}
+
+%% A PARTIR GERARD 
+
+\subsection{WebRTC API's}
+\begin{frame}[fragile]\frametitle{Introduction}
+WebRTC consist of several interrelated API's and protocols which work together to support 
+the exchange of data and media between two or more clients.
+
+There are three main categories of API that exist in WebRTC.
+\begin{itemize}
+ \item Acquiring audio and video
+ \item Communicating audio and video
+ \item Communicating arbitrary data
+\end{itemize}
+Because this three categories, WebRTC has three primary objects in order to acces to this components.
+\begin{itemize}
+\item MediaStream API
+\item RTCPeerConnection API
+\item RTCDataChannel API
+\end{itemize}
+\end{frame}
+
+\subsubsection{MediaStream API}
+\begin{frame}[fragile]\frametitle{getUserMedia Method}
+\begin{itemize}
+\item This API is the responsible for managing all the media sources of the laptop, for example
+the video of the webcam and the audio of the microphone.
+\item Thanks to the MediaStream API the user can get acces to all the laptot devices using the 
+getUserMedia() method.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Example}
+\begin{itemize}
+\item The following code shows a simple getUserMedia implementation:
+\end{itemize}
+\begin{lstlisting}[style=JavaScript]
+var constraints = {video: true};
+
+function succesCallback(stream) {
+var video = document.querySelector("video");
+video.src = window.URL.createObjectURL(stream);
+}
+
+function errorCallback(error){
+console.log("navigator.getUserMedia error ", error);
+}
+
+navigator.getUserMedia(constraints,succesCallback, errorCallback);
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Mediastream}
+\begin{itemize}
+\item A MediaStreamTrack is a single source media element with an unique ID for example
+the audio stream provided by the microphone.
+\item A MediaStream Represents a single source of synchronized audio, video or both.
+Each MediaStream contains one or more MediaStream tracks. 
+\end{itemize}
+
+\begin{figure}[htb]
+\begin{centering}
+\includegraphics[width=0.7\columnwidth]{\webrtcdir/figures/figuras_ok/mediaStream.png}
+\par\end{centering}
+\end{figure}
+\end{frame}
+
+
+\subsubsection{RTCPeerConnection API}
+
+\begin{frame}[fragile]\frametitle{Introduction}
+\begin{itemize}
+\item RTCPeerConnection is all about making a connection between peers.
+\item The RTCPeerConnection interface represents a WebRTC connection between the
+local computer and a remote peer. It provides methods to connect to a remote peer,
+maintain and monitor the connection, and close the connection once it's no longer
+needed.
+\item RTCPeerConnection API doesn't handle the signaling process this means that the user is completely 
+free to choose any signaling method.
+\item The main functionality of this application is to transmit the acquired flow by
+the getUserMedia API (Audio, video, Constraints...) and send it to the other peer
+managing all the parameters necessary to carry out transmission of multimedia data 
+stream, in a simple and transparent way.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{RTCPeerConnection handling}
+It is responsible for managing the following:	
+\begin{itemize}
+\item Signal processing and voice engine to remove noise from audio and video data 
+and provide echo cancellation.
+\item Codec handling and video engine.
+\item Compression and decompression of audio and video.
+\item Transport and Peer to peer communication in order to find the optimal route through firewalls, 
+NATs and relays.
+\item Security, encrypting the data to guarantee secure communications.
+\item Bandwidth management. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{ICE Candidates}
+\begin{itemize}
+\item A RTCPeerConnection object has an associated ICE agent, signaling state, ICE gathering state, 
+and ICE connection state, these are initialized when the object is created.
+\item Ice candidate provides the information about the ipaddress and port from where the data is going to be exchanged.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{RTCPeerConnection flow}
+\begin{enumerate}
+\item RTCPeerConnection API only has to send and receive MediaStreamTracks over a peer-to-peer connection.
+\item The encoding of MediaStreamTracks is managed by objects called RTCRtpSenders.
+\item The reception and decoding of MediaStreamTracks is managed through objects called RTCRtpReceivers.
+\item When a MediaStreamTrack is attached to a RTCPeerConnection, 
+a RTCRtpSenders object is created to be associated with this MediaStreamTrack.
+\item RTCRtpReceivers  are created when remote signaling indicates 
+that there are new tracks available.
+\item The MediaStreamTrack and its associated RTCRtpReceivers are surfaced 
+to the application.
+\end{enumerate}
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{RTCPeerConnection Example}
+\begin{lstlisting}[style=JavaScript]
+pc.onaddstream = gotRemoteStream;
+pc.addStream(localStream);
+pc.createOffer(gotOffer);
+
+function gotOffer(desc) {
+pc.setLocalDescription(desc);
+sendOffer(desc);}
+
+function gotAnswer (desc) {
+pc.setRemoteDescription(desc);
+}
+
+function gotRemoteStream(e) {
+attachMediaStream(remoteVideo, e.stream);
+}
+\end{lstlisting}
+\end{frame}
+
+\subsubsection{RTCDataChannel}
+
+\begin{frame}[fragile]\frametitle{Introduction}
+\begin{itemize}
+\item Sending information is present in many areas like communications, file transfer and video games.
+This requires fast communications, low-latency and guaranteeing the security of the data.
+\item Currently there are other data channels as Websockets, Ajax and many more, but these technologies are designed for client/server
+communications.
+\item RTCDataChannel works directly with the RTCPeerConnection API, which allows connectivity between two clients without requiring intermediate servers,
+generating a low-latency communication.
+\item RTCDataChannel is designed to replicate exactly the Websockets technology, this allows the application to support sending strings as well as any of the
+binary types of JavaScript.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Transmission Modes}
+\begin{enumerate}
+\item \textbf{Unreliable mode}: This mode does not guarantee the correct transmission of all the packets because works through UDP protocol, but 
+eliminates the overhead so it is a faster mode, especially useful for gaming applications.
+
+\item \textbf{Reliable mode}: This mode guarantee the transmission and order of all the packets because works through TCP protocol, but 
+adds overhead in order to handling the control and error flow.
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{RTCDataChannel Example}
+\begin{lstlisting}[style=JavaScript]
+var peerConnection = new RTCPeerConnection();
+var dataChannel =
+  peerConnection.createDataChannel("STUN SERVERS", dataChannelOptions);
+
+dataChannel.onerror = function (error) { //Manages error handling
+  console.log("Data Channel Error:", error);
+};
+dataChannel.onmessage = function (event) { //Specifies a function to be called when the message event is fired on the channel.
+  console.log("Got Data Channel Message:", event.data);
+};
+dataChannel.onopen = function () { //Manages the channel aperture
+  dataChannel.send("Hello World!");
+};
+dataChannel.onclose = function () {
+  console.log("The Data Channel is Closed"); //Manage the channel closure
+};
+\end{lstlisting}
+\end{frame}
+
+
+% 
+% 
+% 
+% 
+% \section{Security}
+% 
+% \begin{itemize}[htb]
+%  \item Acquiring audio and video
+%  \item Communicating audio and video
+%  \item Communicating arbitrary data
+% \end{itemize}

@@ -1,0 +1,58 @@
+\begin{thebibliography}{10}
+
+\bibitem{Expressjs}
+Express.js.
+\newblock \url{http://expressjs.com/es/}.
+
+\bibitem{Chrome}
+Google chrome.
+\newblock \url{https://www.google.es/chrome/browser/desktop/}.
+
+\bibitem{HTML5rocks}
+Is a google project for webrtc.
+\newblock \url{http://www.html5rocks.com/es/}.
+
+\bibitem{Nodejs}
+Node.js.
+\newblock \url{https://nodejs.org/en/}.
+
+\bibitem{Socket}
+Socket.io.
+\newblock \url{http://socket.io/}.
+
+\bibitem{stackoverflow}
+Stackoverflow.
+\newblock \url{http://stackoverflow.com/}.
+
+\bibitem{Mozilla}
+Technologia web para desarroladores.
+\newblock \url{https://developer.mozilla.org/es/docs/Web}.
+
+\bibitem{W3School}
+W3school.
+\newblock \url{http://www.w3schools.com/about/default.asp/}.
+
+\bibitem{webrtc}
+Webrtc 1.0: Real-time communication between browsers.
+\newblock \url{http://www.w3.org/TR/2012/WD-webrtc-20120821/}.
+
+\bibitem{book1}
+Webrtc blueprints.
+\newblock \url{https://www.webrtcexample.com/WebRTC-Blueprints/}.
+
+\bibitem{WebRTCHacks}
+Webrtc hacks.
+\newblock \url{https://webrtchacks.com/}.
+
+\bibitem{book2}
+Webrtc integrator's guide.
+\newblock
+  \url{https://books.google.es/books?id=rdskBQAAQBAJ&pg=PT10&lpg=PT10&dq=WebRTC+Integrator%27s+Guide&source=bl&ots=lllENmArkN&sig=_weLeK_bSHcMGMDjUWbw60S_0AA&hl=es&sa=X&ved=0ahUKEwiV6_C2l53NAhXJuhQKHZ3FAZIQ6AEIWDAI#v=onepage&q=WebRTC%20Integrator%27s%20Guide&f=false}.
+
+\bibitem{rfc2327}
+M.~Handley and V.~Jacobson.
+\newblock {SDP: Session Description Protocol}.
+\newblock RFC 2327 (Proposed Standard), April 1998.
+\newblock Obsoleted by RFC 4566, updated by RFC 3266.
+
+\end{thebibliography}

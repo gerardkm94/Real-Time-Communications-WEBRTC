@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Virtual EET Teacher-Student conference</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <!-- Script for text chat Socket.io></-->
+    <script src='/socket.io/socket.io.js'></script>
+</head>
+
+<body>
+    <!--The <div> tag defines a division or a section in an HTML document.
+    The <div> tag is used to group block-elements to format them with CSS>
+    </-->
+
+    <div id="cameraSelector">
+        Video:<select id="camera"></select>
+    </div>
+    <p><button id="takeProfilePicture" type="button" autofocus="true">Snap Profile Picture</button></p>
+
+    <video id="myVideoTag" autoplay></video>
+    <video id="theirVideoTag" autoplay></video>
+    <div>
+        <label>Your Name</label><input id="myName" type="text" />
+        <label>Message</label><input id="myMessage" type="text" />
+        <input id="sendMessage" type="submit" />
+        <div id="chatArea">Message Output:<br></div>
+    </div>
+
+    <script>
+        //Referencing to video tags
+        var myVideoArea = document.querySelector("#myVideoTag");
+        var theirVideoArea = document.querySelector("#theirVideoTag");
+        //Reference to the video selector
+        var videoSelect = document.querySelector('#camera');
+        //References to chat text selector
+        var myName = document.querySelector("#myName");
+        var myMessage = document.querySelector("#myMessage");
+        var sendMessage = document.querySelector("#sendMessage");
+        var chatArea = document.querySelector("#chatArea");
+        var ROOM = "chat";
+
+        //Getting all the Media devices connected to our browser
+        if (typeof MediaStreamTrack === 'undefined' || typeof MediaStreamTrack.getSources === 'undefined') {
+            document.querySelector("#cameraSelector").style.visibility = "hidden";
+        } else {
+            MediaStreamTrack.getSources(getCameras);
+            //console.log(MediaStreamTrack.getMediaDevices(getCameras));
+        }
+
+        videoSelect.onChange = startStream;
+        //startStream();
+
+        /********Setting up our socket.io client**********/
+
+        //Connect to our socket client
+        io = io.connect();
+        //Message type 'ready' implies that our server will announce a new client join to the room.
+        io.emit('ready', ROOM);
+        //Handling the announcement: Display when new user has join into the room
+        io.on('announce', function(data) {
+            displayMessage(data.message);
+        });
+        //Handling the text message
+        io.on('message', function(data) {
+            displayMessage(data.author + ": " + data.message);
+        });
+
+        //Listener for "submit button". When "submit" is pressed, socket "emit" a json object to the server.
+        sendMessage.addEventListener('click', function(ev) {
+            io.emit('send', {
+                "author": myName.value,
+                "message": myMessage.value,
+                "room": ROOM
+            });
+            ev.preventDefault();
+        }, false);
+
+        //displayMessage method
+        function displayMessage(message) {
+            //Append the message into chatArea div
+            chatArea.innerHTML = chatArea.innerHTML + "<br/>" + message;
+        }
+
+        //Getting all cameras connected to our browser
+        function getCameras(sourceInfos) {
+            for (var i = 0; i < sourceInfos.length; ++i) {
+                var sourceInfo = sourceInfos[i];
+                var option = document.createElement('option');
+                option.value = sourceInfo.id;
+                if (sourceInfo.kind === 'video') {
+                    option.text = sourceInfo.label || 'camera' + (videoSelect.length + 1);
+                    videoSelect.appendChild(option);
+                }
+            }
+        }
+        //startStream Method
+        function startStream(stream) {
+            //Depending on which browser we are, getUserMedia will have some of this references
+            navigator.getUserMedia = (
+                navigator.getUserMedia ||
+                navigator.webkitGetUserMedia ||
+                navigator.mozGetUserMedia ||
+                navigator.msGetUserMedia);
+
+            //Check if there is not getUserMediaSupported
+            checkMedia();
+            //Get the camera that we have choose on the videoSelector
+            var videoSource = videoSelect.value;
+            //Setting the constraints
+            var constraints = {
+                audio: true,
+                video: {
+                    mandatory: {
+                        maxWidth: 240,
+                        minWidth: 240,
+                        maxHeight: 240,
+                        minHeight: 240
+                    },
+                    optional: [{
+                        sourceId: videoSource
+                    }]
+                }
+            };
+
+            navigator.getUserMedia(constraints, onSuccess, onError);
+        }
+
+        //OnSucces Method
+        function onSuccess(stream) {
+            console.log("Success! We have stream :)");
+            //Generating and URL in order to supply to "video" tag
+            myVideoArea.src = window.URL.createObjectURL(stream);
+            myVideoArea.play();
+        }
+
+        //onError method
+        function onError(error) {
+            console.log("Error with getUserMedia" + error);
+        }
+
+        //Check if there is media or not
+        function checkMedia() {
+            if (!navigator.getUserMedia) {
+                alert('getUserMedia is not implemented in this browser');
+            }
+        }
+    </script>
+</body>
+</html>

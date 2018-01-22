@@ -1,0 +1,14 @@
+\begin{thebibliography}{1}
+
+\bibitem{passervice}
+E.~Keller and J.~Rexford, ``The "platform as a service" model for networking,''
+  in {\em Proceedings of the 2010 Internet Network Management Conference on
+  Research on Enterprise Networking}, INM/WREN'10, (Berkeley, CA, USA),
+  pp.~4--4, USENIX Association, 2010.
+
+\bibitem{rfc4001}
+M.~Daniele, B.~Haberman, S.~Routhier, and J.~Schoenwaelder, ``{Textual
+  Conventions for Internet Network Addresses}.'' RFC 4001 (Proposed Standard),
+  Feb. 2005.
+
+\end{thebibliography}

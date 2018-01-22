@@ -1,0 +1,13 @@
+{
+  "name" : "EET-webRTC",
+  "version" : "0.0.1",
+  "private":true,
+  "dependencies" : {
+    "express":"4.x", 
+    "ejs":"2.x",
+    "express.io":"1.x",
+    "coffee-script":"1.x",
+    "connect":"2.x"  
+  }
+
+}

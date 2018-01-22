@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Virtual EET conference</title>
+    <link rel = "stylesheet" type = "text/css" href="styles.css">
+</head>
+
+<body>
+    <!--The <div> tag defines a division or a section in an HTML document.
+    The <div> tag is used to group block-elements to format them with CSS>
+    </-->
+    
+    <div id="cameraSelector">
+        Video:<select id="camera"></select>
+    </div>
+    <p><button id="takeProfilePicture" type="button" autofocus= "true">Snap Profile Picture</button></p>
+    
+    <video id="videoTag" autoplay></video>
+    <!-- The <canvas> element is only a container for graphics. You must use a script to actually draw the graphics></-->
+    <canvas id="profilePicCanvas" style="display: none;"></canvas>
+    <!--Here is where we will put the Profile Pic canvas></-->
+    <div>
+        <img id="profilePictureOutput">
+    </div>
+    <script>
+        //Referencing to video tag
+        var videoArea = document.querySelector("video");
+        //Reference to the video selector
+        var videoSelect = document.querySelector('#camera');
+        //Other references to html id's : Canvas, img, button, video tag.
+        var profilePicCanvas = document.querySelector("#profilePicCanvas");
+        var profilePictureOutput = document.querySelector("#profilePictureOutput");
+        var takePicButton = document.querySelector("#takeProfilePicture");
+        var videoTag = document.querySelector("#videoTag");
+        
+        //Constants
+        var width = 240;//Desired width of the profile picture
+        var height = 0;//Calculated later based on image ratio
+        var streaming = false; //Used to determine when the video has loaded.
+        
+        //When the button is pressed (listening for a click button)
+        takePicButton.addEventListener('click', function(ev) {
+            takeProfilePic();
+            ev.preventDefault();
+        },false);
+        
+        //Video tag event
+        videoTag.addEventListener('canplay', function(ev){
+            
+            if(!streaming) {
+                console.log(streaming);
+                height = videoTag.videoHeight / (videoTag.videoWidth/width);
+                //Firefox bug cannot read heigth, we will make assuptions
+                if(isNaN(height)) {
+                    height = width / (4/3);
+                }
+                videoTag.setAttribute('width', width);
+                videoTag.setAttribute('height', height);
+                profilePicCanvas.setAttribute('width', width);
+                profilePicCanvas.setAttribute('height', height);
+                streaming = true;
+                
+            }
+        },false);
+        
+        //TakeProfilePic method
+        function takeProfilePic() {
+            var context = profilePicCanvas.getContext('2d');
+            if(width && height) {
+                profilePicCanvas.width = width;
+                profilePicCanvas.height = height;
+                context.drawImage(videoTag, 0, 0, width, height);
+                
+                var data = profilePicCanvas.toDataURL('image/png');
+                profilePictureOutput.setAttribute('src', data);
+            }
+        }
+        
+        //Getting all the Media devices connected to our browser
+        if (typeof MediaStreamTrack === 'undefined' || typeof MediaStreamTrack.getSources === 'undefined'){
+            document.querySelector("#cameraSelector").style.visibility="hidden";
+        }else {
+            MediaStreamTrack.getSources(getCameras);
+            //console.log(MediaStreamTrack.getMediaDevices(getCameras));
+
+        }
+       
+        videoSelect.onChange = startStream;
+        startStream();
+        
+        //Getting all cameras connected to our browser
+        function getCameras(sourceInfos) {
+            for(var i=0; i<sourceInfos.length; ++i) {
+                var sourceInfo = sourceInfos[i];
+                var option = document.createElement('option');
+                option.value = sourceInfo.id;
+                if(sourceInfo.kind === 'video') {
+                    option.text = sourceInfo.label || 'camera' + (videoSelect.length + 1);
+                    videoSelect.appendChild(option);
+                }   
+            }
+        }
+        
+        function startStream(stream) {
+        //Depending on which browser we are, getUserMedia will have some of this references
+        navigator.getUserMedia = (
+        navigator.getUserMedia || 
+        navigator.webkitGetUserMedia || 
+        navigator.mozGetUserMedia ||
+        navigator.msGetUserMedia);
+
+        //Check if there is not getUSerMediaSupported
+        checkMedia();
+        //Get the camera that we have choose on the videoSelector
+        var videoSource = videoSelect.value;
+        //Setting the constraints
+        var constraints = {
+            audio: true,
+            video: {
+                mandatory: {
+                    maxWidth:240,
+                    minWidth:240,
+                    maxHeight:240,
+                    minHeight:240
+                },
+                optional:[{
+                    sourceId:videoSource
+                }]
+            }
+        };
+        
+        navigator.getUserMedia(constraints, onSuccess, onError);
+            
+        }
+        
+
+        //OnSucces Method
+        function onSuccess(stream) {
+            console.log("Success! We have stream :)");
+            //Generating and URL in order to supply to "video" tag
+            videoArea.src = window.URL.createObjectURL(stream);
+            //Adding some style to de videoArea (video tag)
+            videoArea.className = 'grayscale_filter';
+            
+            videoArea.play();
+        }
+
+        //onError method
+        function onError(error) {
+            console.log("Error with getUserMedia" + error);
+        }
+        
+        //Check if there is media or not
+        function checkMedia() {
+             if(!navigator.getUserMedia) {
+                 alert('getUserMedia is not implemented in this browser');
+            }else alert("Let's go!!");
+        }
+    </script>
+</body>
+
+
+
+</html>

@@ -1,0 +1,66 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: webrtc-book.aux
+The style file: plain.bst
+Database file #1: bib/rfc.bib
+Database file #2: bib/mybib.bib.bib
+Repeated entry---line 220 of file bib/mybib.bib.bib
+ : @misc{rfc2327
+ :              ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "Socket.io"
+Warning--I didn't find a database entry for "Express.js"
+Warning--to sort, need author or key in Chrome
+Warning--to sort, need author or key in Mozilla
+Warning--to sort, need author or key in webrtc
+Warning--to sort, need author or key in book2
+Warning--to sort, need author or key in book1
+Warning--to sort, need author or key in W3School
+Warning--to sort, need author or key in stackoverflow
+Warning--to sort, need author or key in Socket
+Warning--to sort, need author or key in Nodejs
+Warning--to sort, need author or key in Expressjs
+Warning--to sort, need author or key in HTML5rocks
+Warning--to sort, need author or key in WebRTCHacks
+You've used 13 entries,
+            2118 wiz_defined-function locations,
+            564 strings with 5458 characters,
+and the built_in function-call counts, 2185 in all, are:
+= -- 205
+> -- 25
+< -- 0
++ -- 17
+- -- 4
+* -- 74
+:= -- 258
+add.period$ -- 28
+call.type$ -- 13
+change.case$ -- 41
+chr.to.int$ -- 0
+cite$ -- 25
+duplicate$ -- 91
+empty$ -- 299
+format.name$ -- 4
+if$ -- 536
+int.to.chr$ -- 0
+int.to.str$ -- 13
+missing$ -- 0
+newline$ -- 57
+num.names$ -- 2
+pop$ -- 105
+preamble$ -- 1
+purify$ -- 28
+quote$ -- 0
+skip$ -- 102
+stack$ -- 0
+substring$ -- 65
+swap$ -- 13
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 52
+warning$ -- 12
+while$ -- 2
+width$ -- 15
+write$ -- 98
+(There was 1 error message)

@@ -1,0 +1,272 @@
+% \begin{columns}
+% \begin{column}{0.48\textwidth}
+% \end {column}
+% \begin{column}{0.48\textwidth}
+% \end{column}
+% \end {columns}
+
+\documentclass[english]{beamer}
+\usepackage{units}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\frenchspacing
+\usepackage{booktabs}
+\usetheme{Hannover}
+\usecolortheme[RGB={51,92,133}]{structure}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[rounded][shadow=true] %blocks shape
+
+%%%%%%%%%%%%%%%%%%%%%
+% BEGIN LISTINGS    %
+%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xcolor}
+\usepackage{showexpl}% already includes listings package
+% The listings package defines an internal command for replacements within filenames. 
+% One of these replacements replaces - with \textendash. 
+% You can redefine this command to make the hyphens actual hyphens:
+\makeatletter
+\def\lst@filenamerpl{_\textunderscore $\textdollar}
+\makeatother
+\lstset{frame=shadowbox, basicstyle=\footnotesize\ttfamily, showstringspaces=false,
+rulesepcolor=\color{black}, upquote=true}
+% \lstset{language=bash, frame=shadowbox, basicstyle=\footnotesize, showstringspaces=false,
+% rulesepcolor=\color{black}, upquote=true, }
+\lstdefinestyle{scriptStyle}{
+    basicstyle=\footnotesize,% control font of code
+    preset=\footnotesize,% adjust font size of output
+    numbers=left, numberstyle=\tiny, stepnumber=1, numbersep=5pt,
+    frame=tlbr,
+    pos=r,% want output on right
+%     backgroundcolor=\color{yellow!30},
+    width=0.50\linewidth,
+}
+\lstdefinestyle{verb}{
+    basicstyle=\footnotesize,% control font of code
+    preset=\footnotesize,% adjust font size of output
+    frame=tlbr,
+    pos=r,% want output on right
+%     backgroundcolor=\color{yellow!30},
+    width=0.50\linewidth,
+}
+
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+\lstdefinestyle{vnuml}{
+    language=XML,
+    basicstyle=\footnotesize,% control font of code
+    preset=\footnotesize,% adjust font size of output
+    frame=tlbr,
+    pos=r,% want output on right
+%   backgroundcolor=\color{yellow!30},
+   width=0.50\linewidth,
+     columns=fullflexible,
+  showstringspaces=false,
+  commentstyle=\color{gray}\upshape,
+  stringstyle=\color{black},
+  keywordstyle=\color{darkblue},
+  %keywordstyle=\color{cyan},
+  morekeywords={vnuml,if,vm,version,simulation_name,global,automac,vm_mgmt,vm_defaults,
+  filesystem,kernel,console,net,ipv4,route,forwarding,exec,filetree,basedir,
+  shell,mem,ipv6,host,ssh_version,ssh_key,netconfig,tun_device,mng_if,xterm,user},
+  emph={type,id,name,mode,mask,seq,exec_mode,root},
+  emphstyle=\color{cyan}
+   }
+  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% BEGIN Javascript!!!!! %
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{editorGray}{rgb}{0.95, 0.95, 0.95}
+\definecolor{editorOcher}{rgb}{1, 0.5, 0} % #FF7F00 -> rgb(239, 169, 0)
+\definecolor{editorGreen}{rgb}{0, 0.5, 0} % #007C00 -> rgb(0, 124, 0)
+\usepackage{upquote}
+
+\lstdefinelanguage{JavaScript}{
+  morekeywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  morecomment=[s]{/*}{*/},
+  morecomment=[l]//,
+  morestring=[b]",
+  morestring=[b]'
+}
+
+\lstdefinelanguage{HTML5}{
+        language=html,
+        sensitive=true, 
+        alsoletter={<>=-},
+        otherkeywords={
+        % HTML tags
+        <html>, <head>, <title>, </title>, <meta, />, </head>, <body>,
+        <canvas, \/canvas>, <script>, </script>,<script,!>,<p>,</p>, </body>, </html>,<html,!>, <!, html>, <style>, </style>, ><
+        },  
+        ndkeywords={
+        % General
+        =,
+        % HTML attributes
+        charset=, id=, width=, height=,
+        % CSS properties
+        border:, transform:, -moz-transform:, transition-duration:, transition-property:, transition-timing-function:
+        },  
+        morecomment=[s]{<!--}{-->},
+        tag=[s]
+}
+
+
+\lstdefinestyle{Javascript}{
+    % Basic design
+    backgroundcolor=\color{editorGray},
+    basicstyle={\scriptsize\ttfamily},   
+    frame=l,
+    % Line numbers
+    xleftmargin={0.75cm},
+    numbers=left,
+    stepnumber=1,
+    firstnumber=1,
+    numberfirstline=true,
+    % Code design   
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{darkgray}\ttfamily,
+    ndkeywordstyle=\color{editorGreen}\bfseries,
+    stringstyle=\color{editorOcher},
+    % Code
+    language=HTML5,
+    alsolanguage=JavaScript,
+    alsodigit={.:;},
+    tabsize=2,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    extendedchars=true,
+    breaklines=true,        
+    % Support for German umlauts
+    literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+}
+
+\lstdefinestyle{JavascriptTiny}{
+    % Basic design
+    backgroundcolor=\color{editorGray},
+    basicstyle={\tiny\ttfamily},   
+    frame=l,
+    % Line numbers
+    xleftmargin={0.75cm},
+    numbers=left,
+    stepnumber=1,
+    firstnumber=1,
+    numberfirstline=true,
+    % Code design   
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{darkgray}\ttfamily,
+    ndkeywordstyle=\color{editorGreen}\bfseries,
+    stringstyle=\color{editorOcher},
+    % Code
+    language=HTML5,
+    alsolanguage=JavaScript,
+    alsodigit={.:;},
+    tabsize=2,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    extendedchars=true,
+    breaklines=true,        
+    % Support for German umlauts
+    literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% END: For javascript!!!!! %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%
+% END  OF LISTINGS  %
+%%%%%%%%%%%%%%%%%%%%%
+   
+\newcommand{\definedir}[2]{\newcommand{#1}{#2}}
+\definedir{\webrtcdir}{..}
+
+%colors for blocks
+\xdefinecolor{alertblue}{RGB}{51, 92, 133}
+\xdefinecolor{alertbox}{RGB}{240, 240, 230}
+\mode<presentation>{
+\usebackgroundtemplate{
+\hspace{7cm}
+%\includegraphics[width=7cm]{\webrtcdir/figures/upc.jpg}
+}
+%Definitions of block colors
+\setbeamercolor{block title}{fg=white,bg=alertblue}
+\setbeamercolor{block title alerted}{fg=white, bg=red}
+\setbeamercolor{block title example}{fg=white, bg=darkgray}
+\setbeamercolor{block body}{bg=alertbox}
+\setbeamercolor{block body alerted}{bg=alertbox}
+\setbeamercolor{block body example}{bg=alertbox}
+}
+% \usepackage{svnkw}
+% \usepackage{ifthen}
+% \svnid{$Id: introduction.tex 11 2011-02-21 19:27:38Z juanjo $}
+% \setbeamertemplate{footline}{\ifthenelse{\equal{\theframenumber}{1}}{Version:~ \svnfilerev ~~ \svnfiledate}{} \hfill
+% \insertframenumber/\inserttotalframenumber} 
+\setbeamertemplate{footline}{\hfill \insertframenumber/\inserttotalframenumber} 
+
+\AtBeginSection[]
+{
+   \begin{frame}
+       \frametitle{Outline}
+       \tableofcontents[currentsection,hideallsubsections]
+   \end{frame}
+}
+
+\AtBeginSubsection[]
+{
+   \begin{frame}
+       \frametitle{Outline}
+       \tableofcontents[currentsubsection]
+   \end{frame}
+}
+
+
+\newcommand{\cbox}[2]{
+  \begin{center}
+  \begin{boxedminipage}{#1} #2 \end{boxedminipage}
+  \end{center}
+}
+
+
+\title{Development of a WebRTC application for Firefox/Chrome}
+\author{}
+\institute{\textbf{} \newline Alex Albàs \& Gerard Auguets
+\newline Universitat Politècnica de Catalunya (UPC)}
+\date{}
+
+% Definitions of includes with if
+\newif\ifPROF
+\newif\ifEXTRA
+\newif\ifEXTRAEXTRA
+\newif\ifSOLS
+% \PROFtrue
+% \EXTRAtrue
+% \EXTRAEXTRAtrue
+% \SOLStrue
+
+
+\begin{document}
+
+\begin{frame}
+   \titlepage
+\end{frame}
+% \input{\linuxdir/introlinux/slides/introlinux}
+\input{\webrtcdir/slides/webrtc}
+\end{document}

@@ -1,0 +1,457 @@
+
+
+\section{Project Introduction \& Objectives}
+\subsection{Introduction}
+
+\begin{frame}[fragile]\frametitle{Motivation}
+\begin{itemize}
+\item The application that is going to be developed is web-oriented and focused on real time
+communications. 
+\item This kind of technology has been developed by Google in order to use on its browsers, thing that make easier
+the fact no plugins and extensions are required to install in order to use it.
+\item To start,  we will have to treat many aspects: % After researching we realize that we had to learn....
+% En la lista solo se nombran, se tendrán que explicar en la presentación.
+  \begin{enumerate}
+  \item WebRTC API's and technologies.
+  \item HTML language.
+  \item JavaScript language.
+  \item Callback concept.
+  \item Server made with Node.js technology.
+  \item Signaling process.
+  \item Latex.
+  \end{enumerate}
+\end{itemize}
+\end{frame}
+
+
+\clearpage
+
+Other related knowledges are needed, those that have been acquired during this years
+at the university, thing that will make easier all the absorption of concepts above:
+
+% En la lista solo se nombran, se tendrán que explicar en la presentación.
+\begin{enumerate}
+ \item Object Oriented Programming.
+ \item Multimedia coding.
+ \item Audio/video concepts.
+ \item Telematic concepts.
+ \item Unix/Linux environment.
+
+\end{enumerate}
+
+% Aqui se explicaria todo el proceso inicial de busqueda de informacion, como y donde la hemos buscado
+The main goal of this project is help us to get us started with WebRTC by researching and
+understanding this technology and finally trying to develop a simple WebRTC site from scratch.
+
+\clearpage
+
+\subsection{Objectives}
+
+The main objective: Develop a web application through an expanding technology as WebRTC to:
+\begin{enumerate}
+ \item Establish multimedia communication between peers.
+ \item Room treatment.
+ \item Text chat communication.
+ \item File sharing.
+ 
+ 
+
+\end{enumerate}
+
+After all, our project will have the following objectives which have been defined taking into account
+the introduction themes to treat, so it was decided that the application had at least:
+
+%Aqui se tendrian que explicar un poco que haria cada especificacion a crear. En la lista solo se nombran, pero se tendran que explicar.
+\begin{enumerate}
+ \item A Node.js Server.
+ \item Web-page made with html and JavaScript code.
+ \item Handle streams.
+ \item HTTPS secure connection. %Introducir/Explicar el porque del cambio de http a https.
+ \item File Sharing.
+ 
+
+\end{enumerate}
+
+\section{WebRTC overview}
+\subsection{A few of hystory...}
+The evolution of the web...
+\begin{enumerate}
+
+ \item 1990:Navigation by HREF-based hyperlinks.
+ \item 2000: XMLHttpRequest (XHR), no need to update their content. Allow server-based web services like Facebook, Gmail, etc..
+ \item Nowadays: NO servers required to transmit data between peers.
+\end{enumerate}
+
+\clearpage
+
+Direct peer to peer communications should provide:
+\begin{enumerate}
+ \item Lower latency.
+ \item Multiplayer gaming.
+ \item Video/audio streaming.
+ \item Sensor data feeds.
+ \item Secure P2P connections. % Permiten itenrcambio info privada, sin necesidad de servidores, 
+ 
+\end{enumerate}
+So it allows the fact of exchanging information privately without being managed by intermediary servers. 
+It introduces a way to create new types of services and aplications.
+
+This is just a brief overview of how WebRTC can be used.
+
+\clearpage
+\subsection{Pros and cons}
+Advantages:
+\begin{enumerate}
+ \item No plugins required. %just update your browser.
+ \item Only a handshaking process (Signaling). % between the server and the participants
+ \item No server required to exchanging data.
+ \item File sharing or text chat (Data channel).
+ \item Better encryption.% The traffic is encrypted between peers, so it means that
+%if you are being attacked by a MiD (man in the middle) it’s really harder to
+%break it down.
+ 
+\end{enumerate}
+
+Drawbacks:
+\begin{enumerate}
+ \item Vulnerable on the signaling process.% One must be careful to not to use passwords or shared secrets at the signaling process because at this step data is not encrypted.
+ \item Not supported for all browsers. %IE & Safari are not supported.
+ \item Mobiles are not supported yet. %No native mobile support.
+ \item Hard to scalling. %Large video calls are not well scaled. It means that if
+%you want to do a multi chat connection, each user has to have a peer to peer
+%connection with all the other users. Right figures are 4 to 8 users.
+
+\end{enumerate}
+
+\clearpage
+
+\begin{figure}[htb]
+\begin{centering}
+\includegraphics[width=0.8\textwidth]{\webrtcdir/figures/figuras_utilizadas/webrtc_browsers_state1.png}
+\par\end{centering}
+\caption{\label{fig:webrtc:supported_browsers:webrtc_browsers_state1} Browsers supported.}
+\end{figure}
+
+\section{Signaling}
+Analogy:
+
+This is an analog process like the early days of telephone. When you wanted to call somebody, the signal is picked up by telephone operator, 
+which used to patch the signal with the final user. It was like a \textbf{Manual Handshake} between two parties.
+
+Signaling is an extremely important part of webRTC. In order for a WebRTC application to set up a 'call', its clients need to exchange information:
+\begin{enumerate}
+
+\item Session control messages used to open or close communication.
+\item Error messages.
+\item Media meta data such as codecs and codec settings, bandwidth and media types.
+\item Key data, used to establish secure connections.
+\item Network data, such as a host's IP address and port as seen by the outside world.
+
+\end{enumerate}
+
+\clearpage
+
+\begin{frame}[fragile,allowframebreaks]\frametitle{Signalling}
+ 
+\begin{columns}
+\begin{column}{0.48\textwidth}
+
+\begin{itemize}
+\item Signaling methods and protocols are not defined on the WebRTC standards
+in order to maximize compatibility with established technologies. 
+\item The JavaScript Session Establishment Protocol (JSEP) defines an approach 
+for the fully application but excludes the signaling methods to use.
+\end{itemize}
+\end {column}
+\begin{column}{0.48\textwidth}
+\includegraphics[width=1\columnwidth]{\webrtcdir/figures/figuras_ok/JSEP.pdf}
+\end{column}
+\end {columns}
+
+
+\begin{itemize}
+\item Signaling methods and protocols are not defined on the WebRTC standards
+in order to maximize compatibility with established technologies. 
+\item The JavaScript Session Establishment Protocol (JSEP) defines an approach 
+for the fully application but excludes the signaling methods to use.
+\item Signaling methods and protocols are not defined on the WebRTC standards
+in order to maximize compatibility with established technologies. 
+\framebreak
+\item The JavaScript Session Establishment Protocol (JSEP) defines an approach 
+for the fully application but excludes the signaling methods to use.
+\item Signaling methods and protocols are not defined on the WebRTC standards
+in order to maximize compatibility with established technologies. 
+\item The JavaScript Session Establishment Protocol (JSEP) defines an approach 
+for the fully application but excludes the signaling methods to use.
+\end{itemize}
+
+
+
+\end{frame}
+
+\clearpage
+
+This offer/Answer contains the Session Description Protocol (SDP) that features all the characteristics to the data (video \& audio) to be exchanged:
+\begin{enumerate}
+\item Media (Audio \& Video) Codecs.
+\item Resolution format.
+\item Transport protocol used.
+\item Endpoint IP address and port.
+\item Other info to describe a media transfer endpoint.
+\end{enumerate}
+
+\clearpage
+
+SDP Components:
+
+\begin{enumerate}
+\item Session Description
+\item Time Description
+\item Media Description
+\end{enumerate}
+
+An SDP session description consists of a number of lines of text of the form:
+\texttt{<type>=<value>}.
+
+where:
+\begin{enumerate}
+
+\item Type  must be exactly one case-significant character 
+
+\item Value is structured text whose format depends on <type>.  
+
+In general, <value> is either a number of fields delimited by a single space character or a free format string.  
+
+\item No white spaces allowed on both sides of "=" sign.
+
+\item Optional items are marked with a "*".
+\end{enumerate}
+\clearpage
+% INICIO TABLAS
+\begin{table}[h]
+\caption{Session Description}
+\label{tbl:SDP1}
+\centering
+\begin{footnotesize}
+\begin{tabular}{l p{5cm}}
+\hline
+\texttt{v=} & Protocol version\\
+\texttt{o=} & Originator and session identifier\\
+\texttt{s=} & Session name\\
+\texttt{i=*} & Session information\\
+\texttt{u=*} & URL description\\
+\texttt{e=*} & E-mail address\\
+\texttt{p=*} & Phone number\\
+\texttt{c=*} & Connection information\\
+\texttt{b=*} & Bandwidth information\\
+\texttt{z=*} & Time zone adjustments\\
+\texttt{k=*} & Encryption key\\
+\texttt{a=*} & Attribute information\\
+\hline 
+\end{tabular}
+\end{footnotesize}
+\end{table} 
+
+\begin{table}[h]
+\caption{Time Description}
+\label{tbl:SDP2}
+\centering
+\begin{footnotesize}
+\begin{tabular}{l p{5cm}}
+\hline
+\texttt{t=} & Time the session is active\\
+\texttt{r=*} & Repeat session times\\
+\hline 
+\end{tabular}
+\end{footnotesize}
+\end{table} 
+%%SEPARACION
+
+\clearpage
+\begin{table}[h]
+\caption{Media Description}
+\label{tbl:SDP3}
+\centering
+\begin{footnotesize}
+\begin{tabular}{l p{5cm}}
+\hline
+\texttt{m=} & Media name and transport address\\
+\hline 
+\end{tabular}
+\end{footnotesize}
+\end{table}
+
+% TODO: He intentado poner el SDP example pero queda muuuy grande y feo.
+\clearpage
+%FIN TABLAS
+
+%TODO: Aqui tendriamos que poner que setRemote/LocalDescription y la offer viene generada por RTCPeerConnection que se explicará en las APIS de WebRTC, pero 
+% que entra en el proceso de signaling.
+The initial signaling steps:
+
+\begin{enumerate}
+ \item Alice wants to reach Bob's browser, so an Offer is created and sent to the Server.
+ \item Alice adds its offer to setLocalDescription(). %Importante comentar que se explicara mas abajo el setLocalDescription() y SDP.
+ \item Bob reach the server and receive the offer generated by Alice.
+ \item Bob adds to its setRemoteDescription() the received offer and create an answer to the server.
+ \item Bob adds its answer to its setLocalDescription().
+ \item Alice receive the answer from Bob and adds it to its setRemoteDescription().
+ 
+\end{enumerate}
+%Comentar que este proceso (el de arriba) se hace al iniciar una llamada o si se esta reconfigurando la misma.
+
+\clearpage
+
+\begin{figure}[htb]
+\begin{centering}
+\includegraphics[width=0.7\textwidth]{\webrtcdir/figures/figuras_ok/4_signalling_offer_answer.pdf}
+\par\end{centering}
+\caption{\label{fig:webrtc:SignalingOverview:4_signaling_offer_answer.pdf}Signaling offer-answer scenario}
+\end{figure}
+
+%TODO: Igual se tendria que modificar la figura añadiendo el setLocalDescription ya que dentro de la offer/answer va el sdp.
+
+\clearpage
+
+Peers must exchange information about the network connection. This is
+known as an \textbf{ICE Candidate*} and it details the available methods that the peer is
+able to communicate (directly or through a TURN server). In other words, 
+look for the best way to reach the other part through:
+
+* Interactive Connectivity Establishment.
+%Tocaria explicar que es un STUN y un TURN
+\begin{enumerate}
+ \item Stun Server.
+ \item Turn Server.
+\end{enumerate}
+
+The claim of ICE candidates is discover which transport address are valid, so \textbf{ICE framework} will try to find the best ICE candidate until works.
+
+Once Offer/Answer have been sent:
+
+\begin{enumerate}
+ \item ICE Candidate is going back and forward between Alice and Bob by the
+Signaling Server.
+ \item Generally both could get an public IP, but if there is a firewall in the middle,
+other IP is given.
+ \item When an ICE candidate is ready, it is possible to establish an \textbf{RTCPeerConnection}.
+\end{enumerate}
+
+
+\clearpage
+
+\begin{figure}[htb]
+\begin{centering}
+\includegraphics[width=0.6\textwidth]{\webrtcdir/figures/figuras_ok/4_signalling_diagram.pdf}
+\par\end{centering}
+\caption{\label{fig:webrtc:SignalingOverview:4_signaling_diagram.pdf}Signaling states}
+\end{figure}
+
+
+
+\clearpage
+
+
+<<<<<<< .mine
+\subsection{WebRTC API's}
+WebRTC consist of several interrelated API's and protocols which work together to support 
+the exchange of data and media between two or more clients.
+
+There are three main categories of API that exist in WebRTC.
+\begin{figure}[htb]
+ \item Acquiring audio and video
+ \item Communicating audio and video
+ \item Communicating arbitrary data
+\end{figure}
+
+Because this three categories, WebRTC has three primary objects in order to acces to this components.
+\begin{figure}[htb]
+\item MediaStream API
+\item RTCPeerConnection API
+\item RTCDataChannel API
+\end{figure}
+
+\subsubsection{MediaStream API}
+This API is the responsible for managing all the media sources of the laptop, for example
+the video of the webcam and the audio of the microphone.
+
+Thanks to the MediaStream API the user can get acces to all the laptot devices using the 
+getUserMedia() object (Y los junta todos en una) 
+
+
+
+
+\subsection{Security}
+\subsection{Implementation}
+\subsection{Testing}
+\subsection{Conclusions}
+=======
+\section{WebRTC API's}
+
+
+
+\begin{frame}[fragile]\frametitle{to be defined}
+\begin{itemize}
+\item to be defined
+\end{itemize}
+\end{frame}
+
+
+\section{Security}
+
+\begin{frame}[fragile]\frametitle{to be defined}
+WebRTC consist of several interrelated API's and protocols which work together to support 
+the exchange of data and media between two or more clients.
+
+There are three main categories of API that exist in WebRTC.
+\begin{figure}[htb]
+ \item Acquiring audio and video
+ \item Communicating audio and video
+ \item Communicating arbitrary data
+\end{figure}
+
+Because this three categories, WebRTC has three primary objects in order to acces to this components.
+\begin{figure}[htb]
+\item MediaStream API
+\item RTCPeerConnection API
+\item RTCDataChannel API
+\end{figure}
+
+\subsubsection{MediaStream API}
+This API is the responsible for managing all the media sources of the laptop, for example
+the video of the webcam and the audio of the microphone.
+
+Thanks to the MediaStream API the user can get acces to all the laptot devices using the 
+getUserMedia() object (Y los junta todos en una) 
+
+
+
+\begin{itemize}
+\item to be defined
+\end{itemize}
+\end{frame}
+
+\section{Implementation}
+
+\begin{frame}[fragile]\frametitle{to be defined}
+\begin{itemize}
+\item to be defined
+\end{itemize}
+\end{frame}
+
+\section{Testing}
+
+\begin{frame}[fragile]\frametitle{to be defined}
+\begin{itemize}
+\item to be defined
+\end{itemize}
+\end{frame}
+
+\section{Conclusions}
+
+\begin{frame}[fragile]\frametitle{to be defined}
+\begin{itemize}
+\item to be defined
+\end{itemize}
+\end{frame}
+>>>>>>> .r154

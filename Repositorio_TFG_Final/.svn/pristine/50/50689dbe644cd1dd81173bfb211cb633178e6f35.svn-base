@@ -1,0 +1,195 @@
+  % \begin{columns}
+% \begin{column}{0.48\textwidth}
+% \end {column}
+% \begin{column}{0.48\textwidth}
+% \end{column}
+% \end {columns}
+
+\documentclass[spanish]{beamer}
+\usepackage{units}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyvrb}
+\usepackage{verbatim}
+\usepackage{times}
+\frenchspacing
+\usepackage{booktabs}
+\usetheme{Hannover}
+\usecolortheme[RGB={51,92,133}]{structure}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[rounded][shadow=true] %blocks shape
+
+% Directory definitions
+\newcommand{\definedir}[2]{\newcommand{#1}{#2}}
+\definedir{\webrctdir}{..}
+
+
+%colors for blocks
+\xdefinecolor{alertblue}{RGB}{51, 92, 133}
+\xdefinecolor{alertbox}{RGB}{240, 240, 230}
+\mode<presentation>{
+\usebackgroundtemplate{
+\hspace{7cm}\includegraphics[width=7cm]{\webrctdir/figures/upc.jpg}}
+%Definitions of block colors
+\setbeamercolor{block title}{fg=white,bg=alertblue}
+\setbeamercolor{block title alerted}{fg=white, bg=red}
+\setbeamercolor{block title example}{fg=white, bg=darkgray}
+\setbeamercolor{block body}{bg=alertbox}
+\setbeamercolor{block body alerted}{bg=alertbox}
+\setbeamercolor{block body example}{bg=alertbox}
+}
+\definecolor{red}{rgb}{1,0,0} % valores de las componentes roja, verde y azul (RGB
+\definecolor{blue}{rgb}{0,0,1} % ja està definit
+\definecolor{grey}{rgb}{0.9,0.9,0.9}
+\definecolor{green}{rgb}{0,1,0}
+
+% - Noves -------
+\definecolor{def-blue}{RGB}{0,0,125}
+\definecolor{light-blue}{RGB}{204,204,230}
+%----------------
+
+\usepackage{boxedminipage}
+\setlength{\fboxrule}{1.2pt}
+\setlength{\fboxsep}{4pt}
+\usepackage{colortbl}
+% \usepackage{svnkw}
+% \usepackage{ifthen}
+% \svnid{$Id: introduction.tex 11 2011-02-21 19:27:38Z juanjo $}
+% \setbeamertemplate{footline}{\ifthenelse{\equal{\theframenumber}{1}}{Version:~ \svnfilerev ~~ \svnfiledate}{} \hfill
+% \insertframenumber/\inserttotalframenumber} 
+\setbeamertemplate{footline}{\hfill \insertframenumber/\inserttotalframenumber} 
+
+% Comanes per remarcar conceptes
+\newcommand{\tdef}[1]{
+{\color{def-blue} \textbf{#1}}
+}
+
+\newcommand{\temph}[1]{
+{\color{red} \textbf{#1}}
+}
+
+\newcommand{\tbox}[1] {
+{\fcolorbox{def-blue}{light-blue}{#1}}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+% START OF LISTINGS %
+%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xcolor}
+\usepackage{showexpl}% already includes listings package
+% The listings package defines an internal command for replacements within filenames. 
+% One of these replacements replaces - with \textendash. 
+% You can redefine this command to make the hyphens actual hyphens:
+\makeatletter
+\def\lst@filenamerpl{_\textunderscore $\textdollar}
+\makeatother
+\lstset{frame=shadowbox, basicstyle=\tiny\ttfamily, showstringspaces=false,
+rulesepcolor=\color{black}, upquote=true}
+% \lstset{language=bash, frame=shadowbox, basicstyle=\footnotesize, showstringspaces=false,
+% rulesepcolor=\color{black}, upquote=true, }
+\lstdefinestyle{scriptStyle}{
+    basicstyle=\tiny,% control font of code
+    preset=\tiny,% adjust font size of output
+    numbers=left, numberstyle=\tiny, stepnumber=1, numbersep=5pt,
+    frame=tlbr,
+    pos=r,% want output on right
+%     backgroundcolor=\color{yellow!30},
+    width=0.50\linewidth,
+}
+\lstdefinestyle{verb}{
+    basicstyle=\tiny,% control font of code
+    preset=\tiny,% adjust font size of output
+    frame=tlbr,
+    pos=r,% want output on right
+%     backgroundcolor=\color{yellow!30},
+    width=0.50\linewidth,
+}
+
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+\lstdefinestyle{vnuml}{
+    language=XML,
+    basicstyle=\tiny,% control font of code
+    preset=\tiny,% adjust font size of output
+    frame=tlbr,
+    pos=r,% want output on right
+%   backgroundcolor=\color{yellow!30},
+   width=0.50\linewidth,
+     columns=fullflexible,
+  showstringspaces=false,
+  commentstyle=\color{gray}\upshape,
+  stringstyle=\color{black},
+  keywordstyle=\color{darkblue},
+  %keywordstyle=\color{cyan},
+  morekeywords={vnuml,if,vm,version,simulation_name,global,automac,vm_mgmt,vm_defaults,
+  filesystem,kernel,console,net,ipv4,route,forwarding,exec,filetree,basedir,
+  shell,mem,ipv6,host,ssh_version,ssh_key,netconfig,tun_device,mng_if,xterm,user},
+  emph={type,id,name,mode,mask,seq,exec_mode,root},
+  emphstyle=\color{cyan}
+   }
+
+
+%%%%%%%%%%%%%%%%%%%%%
+% END  OF LISTINGS  %
+%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\AtBeginSection[]
+{
+   \begin{frame}
+       \frametitle{Outline}
+       \tableofcontents[currentsection]
+   \end{frame}
+}
+
+\AtBeginSubsection[]
+{
+   \begin{frame}
+       \frametitle{Outline}
+       \tableofcontents[currentsubsection]
+   \end{frame}
+}
+
+
+\newcommand{\cbox}[2]{
+  \begin{center}
+  \begin{boxedminipage}{#1} #2 \end{boxedminipage}
+  \end{center}
+}
+
+
+
+\title{WebRTC}
+\author{}
+\institute{\textbf{Jose L. Muñoz, Oscar Esparza, Juanjo Alins, Jorge Mata} \newline
+\textit{Telematics Engineering} \newline Universitat Politècnica de Catalunya (UPC)}
+\date{}
+
+
+% Definitions of includes with if
+\newif\ifextra
+\newif\ifextraextra
+
+% In the text:
+% \ifextra 
+% bla bla
+% \fi
+
+% Assign the if
+\extratrue
+% \extraextratrue
+
+\begin{document}
+
+\begin{frame}
+   \titlepage
+\end{frame}
+
+\input{\webrctdir/slides/webrtc}
+% \input{\dnsdir/slides/dns-extra}
+\end{document}
+
